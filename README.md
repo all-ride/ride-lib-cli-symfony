@@ -9,7 +9,7 @@ Symfony Commands inside Ride.
 
 ## Usage
 
-To use, simply extend AbstractSymfonyCommand:
+To use, extend AbstractSymfonyCommand:
 
     class SymfonyCommand extends AbstractSymfonyCommand {
 
@@ -17,6 +17,21 @@ To use, simply extend AbstractSymfonyCommand:
             parent::__construct(new SomeSymfonyCommand(), 'symfony command');
         }
 
+    }
+    
+Add it to your dependencies.json
+
+    #config/dependencies.json
+    {
+        "dependencies": [
+            {
+                {
+                    "interfaces": "ride\\library\\cli\\command\\Command", 
+                    "class": "ride\\cli\\command\\SymfonyCommand",
+                    "id": "doctrine.command.symfony"
+                }
+            }
+        ]
     }
 
 You can now find your new command listed as a Ride command:
