@@ -84,11 +84,7 @@ abstract class AbstractSymfonyCommand extends AbstractCommand {
      */
     public function execute() {
         $args = array('command' => $this->command->getName());
-
-        foreach ($this->input->getArguments() as $arg) {
-            /** @var \ride\library\cli\command\CommandArgument $arg */
-            $args[$arg->getName()] = $arg->getDescription();
-        }
+        $args = array_merge($args, $this->input->getArguments());
 
         foreach ($this->input->getFlags() as $flag => $value) {
             $args['--' . $flag] = $value;
