@@ -5,35 +5,43 @@ Symfony Commands inside Ride.
 
 ## Installation
 
-    composer require ride/lib-cli-symfony:dev-master
+```sh
+composer require ride/lib-cli-symfony:dev-master
+```
 
 ## Usage
 
 To use, extend AbstractSymfonyCommand:
 
-    class SymfonyCommand extends AbstractSymfonyCommand {
+```php
+class SymfonyCommand extends AbstractSymfonyCommand {
 
-        public function __construct() {
-            parent::__construct(new SomeSymfonyCommand(), 'symfony command');
-        }
-
+    public function __construct() {
+        parent::__construct(new SomeSymfonyCommand(), 'symfony command');
     }
+
+}
+```
     
 Add it to your dependencies.json
 
-    #config/dependencies.json
-    {
-        "dependencies": [
+```js
+#config/dependencies.json
+{
+    "dependencies": [
+        {
             {
-                {
-                    "interfaces": "ride\\library\\cli\\command\\Command", 
-                    "class": "ride\\cli\\command\\SymfonyCommand",
-                    "id": "doctrine.command.symfony"
-                }
+                "interfaces": "ride\\library\\cli\\command\\Command", 
+                "class": "ride\\cli\\command\\SymfonyCommand",
+                "id": "doctrine.command.symfony"
             }
-        ]
-    }
+        }
+    ]
+}
+```
 
 You can now find your new command listed as a Ride command:
 
-    php application/cli.php
+``` sh
+php application/cli.php
+```
